@@ -3,26 +3,6 @@ ARG PHP_VERSION=8.1
 
 ARG COMPOSER_VERSION=latest
 
-###########################################
-# PHP dependencies
-###########################################
-
-FROM composer:${COMPOSER_VERSION} AS vendor
-WORKDIR /var/www/html
-COPY composer* ./
-RUN composer install \
-  --no-dev \
-  --no-interaction \
-  --prefer-dist \
-  --ignore-platform-reqs \
-  --optimize-autoloader \
-  --apcu-autoloader \
-  --ansi \
-  --no-scripts \
-  --audit
-
-###########################################
-
 FROM php:${PHP_VERSION}-cli-buster
 
 LABEL maintainer="Seyed Morteza Ebadi <seyed.me720@gmail.com>"
@@ -275,7 +255,6 @@ RUN apt-get clean \
     && rm /var/log/lastlog /var/log/faillog
 
 COPY . .
-COPY --from=vendor ${ROOT}/vendor vendor
 
 RUN mkdir -p \
   storage/framework/{sessions,views,cache} \
