@@ -219,6 +219,4 @@ RUN if [ ${INSTALL_PG_CLIENT} = true ]; then \
         && apt-get purge -yqq gnupg; \
   fi
 
-COPY . .
-
 RUN ls
