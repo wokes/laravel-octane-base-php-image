@@ -1,0 +1,35 @@
+kind: pipeline
+name: default
+
+steps:
+- name: build
+  image: plugins/docker
+  privileged: true
+  settings:
+    repo: wokes/laravel-octane-base-php-image
+    username:
+      from_secret: DOCKER_HUB_USERNAME
+    password:
+      from_secret: DOCKER_HUB_PASSWORD
+
+    # https://community.harness.io/t/problem-building-docker-image-alpine-upgrade/12883/5
+    mtu: 1280
+
+    tags:
+      - latest
+    build_args:
+      - PHP_VERSION=8.1
+      - COMPOSER_VERSION=latest
+      - APP_WITH_HORIZON=true
+
+      - INSTALL_INTL=true
+      - INSTALL_MEMCACHED=false
+      - INSTALL_MYSQL_CLIENT=false
+      - INSTALL_OPCACHE=false
+      - INSTALL_PCNTL=false
+      - INSTALL_PDO_PGSQL=false
+      - INSTALL_PG_CLIENT=false
+      - INSTALL_PGSQL=false
+      - INSTALL_PHPREDIS=false
+      - INSTALL_POSTGIS=true
+      - INSTALL_RDKAFKA=false
