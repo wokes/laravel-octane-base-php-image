@@ -19,8 +19,6 @@ steps:
       - latest
     build_args:
       - PHP_VERSION=8.1
-      - COMPOSER_VERSION=latest
-      - APP_WITH_HORIZON=true
 
       - INSTALL_INTL=true
       - INSTALL_MEMCACHED=false
