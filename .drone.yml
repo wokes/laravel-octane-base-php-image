@@ -21,10 +21,10 @@ steps:
       - PHP_VERSION=8.1
 
       - INSTALL_INTL=true
+      - INSTALL_PCNTL=true
       - INSTALL_MEMCACHED=false
       - INSTALL_MYSQL_CLIENT=false
       - INSTALL_OPCACHE=false
-      - INSTALL_PCNTL=false
       - INSTALL_PDO_PGSQL=false
       - INSTALL_PG_CLIENT=false
       - INSTALL_PGSQL=false
